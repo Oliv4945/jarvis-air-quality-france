@@ -1,0 +1,3 @@
+# Commands file for jarvis-quality-air-france plugin - French
+
+*pollution*==say "$(pg_aq_france_index)"
