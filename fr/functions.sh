@@ -45,7 +45,7 @@ pg_aq_france_index() {
         "6" | "7")
             index="médiocre"
             ;;
-        "8" | "8")
+        "8" | "9")
             index="mauvais"
             ;;
         "10")
