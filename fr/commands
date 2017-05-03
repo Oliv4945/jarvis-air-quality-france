@@ -1,3 +1,4 @@
 # Commands file for jarvis-quality-air-france plugin - French
 
-*pollution*==say "$(pg_aq_france_index)"
+*POLLUTION*A (*)==pg_aq_france_city=(1) && say "$(pg_aq_france_index)"
+*POLLUTION*==pg_aq_france_default_city=true && say "$(pg_aq_france_index)"

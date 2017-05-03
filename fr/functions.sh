@@ -6,18 +6,18 @@ pg_aq_france_index() {
     local url="http://www2.prevair.org/ineris-web-services.php?url=atmo&date=$date"
     
     # Convert city to upper case
-    pg_aq_france_city=$(awk '{ print toupper($0) }' <<< $pg_aq_france_city)
+    local pg_aq_france_city_converted=$(awk '{ print toupper($0) }' <<< $pg_aq_france_city)
     
     # Get page: curl -s $url
     # Replace table boundaries `],[` by new lines: sed 's/\],\[/\n/g'
     # Select city line: grep $pg_aq_france_city
     # Replace table boundaries `","` by new lines: sed 's/","/\n/g'
     # Select 8th line: sed -n 8p
-    local index="$(curl -s $url | sed 's/\],\[/\n/g' | grep $pg_aq_france_city | sed 's/","/\n/g' | sed -n 8p)"
+    local index="$(curl -s $url | sed 's/\],\[/\n/g' | grep $pg_aq_france_city_converted | sed 's/","/\n/g' | sed -n 8p)"
     
     # Error message without results
     if [ -z "$index" ]; then
-        echo "Pas de résultats, vérifiez la ville"
+        echo "Pas de résultats pour $pg_aq_france_city, vérifiez la ville"
         exit 0;
     fi
     
@@ -46,5 +46,9 @@ pg_aq_france_index() {
     esac
     
     # Return speech
-    echo "L'indice de pollution est $index"
+    echo "L'indice de pollution "
+    if [ -z "$pg_aq_france_default_city"]; then
+        echo "à $pg_aq_france_city"
+    fi
+    echo "est $index"
 }
