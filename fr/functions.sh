@@ -13,7 +13,11 @@ pg_aq_france_index() {
     # Select city line: grep $pg_aq_france_city
     # Replace table boundaries `","` by new lines: sed 's/","/\n/g'
     # Select 8th line: sed -n 8p
-    local index="$(curl -s $url | sed 's/\],\[/\n/g' | grep $pg_aq_france_city_converted | sed 's/","/\n/g' | sed -n 8p)"
+    local index="$(curl -s $url | \
+                sed 's/\],\[/\n/g' | \
+                grep $pg_aq_france_city_converted | \
+                sed 's/","/\n/g' | \
+                sed -n 8p)"
     
     # Error message without results
     if [ -z "$index" ]; then
