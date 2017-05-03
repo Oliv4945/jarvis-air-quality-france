@@ -6,7 +6,7 @@ pg_aq_france_index() {
     local url="http://www2.prevair.org/ineris-web-services.php?url=atmo&date=$date"
     
     # Convert city to upper case
-    local pg_aq_france_city_converted=$(awk '{ print toupper($0) }' <<< $pg_aq_france_city)
+    local pg_aq_france_city_converted=$(awk '{ print toupper($0) }' <<< $pg_aq_france_city | sed 's/ /-/g')
     
     # Get page: curl -s $url
     # Replace table boundaries `],[` by new lines: sed 's/\],\[/\n/g'
