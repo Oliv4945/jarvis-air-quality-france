@@ -56,9 +56,9 @@ pg_aq_france_index() {
     esac
     
     # Return speech
-    echo "L'indice de pollution "
+    echo -n "L'indice de pollution "
     if [ -z "$pg_aq_france_default_city"]; then
-        echo "à $pg_aq_france_city"
+        echo -n "à $pg_aq_france_city "
     fi
     echo "est $index"
 }
