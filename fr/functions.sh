@@ -57,7 +57,7 @@ pg_aq_france_index() {
     
     # Return speech
     echo -n "L'indice de pollution "
-    if [ -z "$pg_aq_france_default_city"]; then
+    if [ -z "$pg_aq_france_default_city" ]; then
         echo -n "à $pg_aq_france_city "
     fi
     echo "est $index"
